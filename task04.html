@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 04</title>
+
+    <script>
+
+        function Classroom(name, seats, faculty) {
+            this.name = name;
+            this.seats = seats;
+            this.faculty = faculty;
+        }
+
+        function Group(name, counts, faculty) {
+            this.name = name;
+            this.counts = counts;
+            this.faculty = faculty;
+        }
+
+        let crooms = [];
+
+        crooms.push(new Classroom('A105', 15, 'Economy'));
+        crooms.push(new Classroom('B205', 30, 'Physics'));
+        crooms.push(new Classroom('F101', 15, 'Chemistry'));
+        crooms.push(new Classroom('C201', 10, 'Economy'));
+        crooms.push(new Classroom('Z110', 15, 'Language'));
+        crooms.push(new Classroom('B101', 40, 'Physics'));
+
+        /*Вывод всех аудиторий*/
+        printAllClassrooms(crooms);
+        console.log('-----------------------------');
+
+        /*Вывод аудитории для заданного факультета*/
+        printClassroomsForFaculties(crooms, 'Economy');
+        console.log('-----------------------------');
+
+        /*Вывод аудитории для заданной группы*/
+        printClassroomsForGroup(crooms, new Group('G107', 20, 'Physics'));
+        console.log('-----------------------------');
+
+        /*Сортировка по количеству мест*/
+        sortBySeats(crooms);
+        printAllClassrooms(crooms);
+        console.log('-----------------------------');
+
+        /*Сортировка по названию (по алфавиту)*/
+        sortByName(crooms);
+        printAllClassrooms(crooms);
+
+        function printAllClassrooms(classrooms) {
+            for (const classroom of classrooms) {
+                console.log(`Classroom: ${classroom.name}, seats: ${classroom.seats}, faculty: ${classroom.faculty}`);
+            }
+        }
+
+        function printClassroomsForFaculties(classrooms, faculty) {
+            for (let i = 0; i < classrooms.length; i++) {
+                if (classrooms.at(i).faculty === faculty) {
+                    console.log(`Classroom: ${classrooms.at(i).name}, seats: ${classrooms.at(i).seats}, faculty: ${classrooms.at(i).faculty}`);
+                }
+            }
+        }
+
+        function printClassroomsForGroup (classrooms, group) {
+            for (let i = 0; i < classrooms.length; i++) {
+                if (classrooms.at(i).faculty === group.faculty) {
+                    console.log(`Classroom: ${classrooms.at(i).name}, seats: ${classrooms.at(i).seats}, faculty: ${classrooms.at(i).faculty}`);
+                }
+            }
+        }
+
+        function sortBySeats (classrooms) {
+            classrooms.sort((a, b) => a.seats - b.seats);
+        }
+
+        function sortByName (classrooms) {
+            classrooms.sort((a, b) => {
+                if (a.name < b.name) {
+                    return -1;
+                }
+                if (a.name > b.name) {
+                    return 1;
+                }
+                return 0;
+            });
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
